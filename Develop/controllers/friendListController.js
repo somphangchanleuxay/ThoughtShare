@@ -2,6 +2,15 @@
 const FriendList = require('../models/friendList');
 
 // Controller functions
+exports.getAllFriendLists = async (req, res) => {
+    try {
+        const friendLists = await FriendList.find();
+        res.json(friendLists);
+    } catch (error) {
+        res.status(500).json({ error: 'Server error' });
+    }
+};
+
 exports.getFriendListById = async (req, res) => {
     const { id } = req.params;
     try {

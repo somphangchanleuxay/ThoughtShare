@@ -2,6 +2,15 @@
 const Reaction = require('../models/reaction');
 
 // Controller functions
+exports.getAllReactions = async (req, res) => {
+    try {
+        const reactions = await Reaction.find();
+        res.json(reactions);
+    } catch (error) {
+        res.status(500).json({ error: 'Server error' });
+    }
+};
+
 exports.getReactionById = async (req, res) => {
     const { id } = req.params;
     try {

@@ -2,6 +2,17 @@
 const Thought = require('../models/thought');
 
 // Controller functions
+
+// Controller functions
+exports.getAllThoughts = async (req, res) => {
+    try {
+        const thoughts = await Thought.find();
+        res.json(thoughts);
+    } catch (error) {
+        res.status(500).json({ error: 'Server error' });
+    }
+};
+
 exports.getThoughtById = async (req, res) => {
     const { id } = req.params;
     try {
