@@ -10,4 +10,10 @@ router.post('/', ThoughtController.createThought);
 router.put('/:id', ThoughtController.updateThought);
 router.delete('/:id', ThoughtController.deleteThought);
 
+// Add route for adding a reaction to a thought
+router.post('/:thoughtId/reactions', thoughtController.addReactionToThought);
+// Add route for deleting a reaction from a thought
+router.delete('/:thoughtId/reactions/:reactionId', thoughtController.removeReactionFromThought);
+
+
 module.exports = router;
