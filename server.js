@@ -32,6 +32,12 @@ app.use('/api/thoughts', thoughtRoutes);
 app.use('/api/reactions', reactionRoutes);
 app.use('/api/friend-list', friendListRoutes);
 
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ error: 'Internal server error' });
+});
+
 // Start server
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
