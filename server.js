@@ -1,16 +1,16 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const userRoutes = require('./routes/userRoutes');
-const thoughtRoutes = require('./routes/thoughtRoutes');
-const reactionRoutes = require('./routes/reactionRoutes');
-const friendListRoutes = require('./routes/friendListRoutes');
+const userRoutes = require('./Develop/routes/userRoutes');
+const thoughtRoutes = require('./Develop/routes/thoughtRoutes');
+const reactionRoutes = require('./Develop/routes/reactionRoutes');
+const friendListRoutes = require('./Develop/routes/friendListRoutes');
 
 // Initialize Express app
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Connect to MongoDB database
-mongoose.connect('mongodb://localhost/social_network_db', {
+mongoose.connect('mongodb://localhost:27017/social_network_db', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,

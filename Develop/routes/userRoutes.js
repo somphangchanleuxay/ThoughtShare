@@ -11,8 +11,8 @@ router.put('/:id', UserController.updateUser);
 router.delete('/:id', UserController.deleteUser);
 
 // Add route for adding a friend to a user's friend list
-router.post('/:userId/friends/:friendId', userController.addFriend);
+router.post('/:userId/friends/:friendId', UserController.addFriend);
 // Add route for removing a friend from a user's friend list
-router.delete('/:userId/friends/:friendId', userController.removeFriend);
+router.delete('/:userId/friends/:friendId', UserController.removeFriend);
 
 module.exports = router;

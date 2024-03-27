@@ -1,5 +1,4 @@
-// controllers/userController.js
-const User = require('../models/user');
+const User = require('../models/user.js');
 
 // Controller functions
 exports.getAllUsers = async (req, res) => {
@@ -56,6 +55,36 @@ exports.deleteUser = async (req, res) => {
             return res.status(404).json({ error: 'User not found' });
         }
         res.json({ message: 'User deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ error: 'Server error' });
+    }
+};
+
+//Add friend to friend list
+exports.addFriend = async (req, res) => {
+    try {
+        const { userId, friendId } = req.params;
+        // Logic to add a friend to the user's friend list
+        const user = await User.findByIdAndUpdate(userId, { $push: { friends: friendId } }, { new: true });
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ error: 'Server error' });
+    }
+};
+
+//Remove friend from friend list
+exports.removeFriend = async (req, res) => {
+    try {
+        const { userId, friendId } = req.params;
+        // Logic to remove a friend from the user's friend list
+        const user = await User.findByIdAndUpdate(userId, { $pull: { friends: friendId } }, { new: true });
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+        res.json(user);
     } catch (error) {
         res.status(500).json({ error: 'Server error' });
     }
