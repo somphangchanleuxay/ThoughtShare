@@ -35,6 +35,18 @@ app.use('/api/friend-list', friendListRoutes);
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
+
+    if (err instanceof mongoose.Error) {
+        // Mongoose validation or database error
+        return res.status(400).json({ error: err.message });
+    }
+
+    if (err.status === 404) {
+        // Route not found
+        return res.status(404).json({ error: 'Not found' });
+    }
+
+    // Generic server error
     res.status(500).json({ error: 'Internal server error' });
 });
 
