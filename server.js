@@ -5,6 +5,8 @@ const thoughtRoutes = require('./Develop/routes/thoughtRoutes');
 const reactionRoutes = require('./Develop/routes/reactionRoutes');
 const friendListRoutes = require('./Develop/routes/friendListRoutes');
 
+require('dotenv').config();
+
 // Initialize Express app
 const app = express();
 const PORT = process.env.PORT || 3000;
