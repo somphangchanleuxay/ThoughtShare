@@ -13,10 +13,6 @@ const PORT = process.env.PORT || 3000;
 
 // Connect to MongoDB database
 mongoose.connect('mongodb://localhost:27017/social_network_db', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true
 })
 .then(() => {
     console.log('Connected to MongoDB');
