@@ -37,12 +37,16 @@ exports.createReaction = async (req, res) => {
 exports.deleteReaction = async (req, res) => {
     const { id } = req.params;
     try {
+        // Find the reaction by ID and delete it
         const reaction = await Reaction.findByIdAndDelete(id);
         if (!reaction) {
+            // If reaction with the provided ID is not found, return 404 Not Found status
             return res.status(404).json({ error: 'Reaction not found' });
         }
+        // If deletion is successful, send a success message
         res.json({ message: 'Reaction deleted successfully' });
     } catch (error) {
+        // If there is an error during deletion, return 500 Internal Server Error status
         res.status(500).json({ error: 'Server error' });
     }
 };
